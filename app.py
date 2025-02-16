@@ -28,6 +28,10 @@ class UpdateAvailability(BaseModel):
     available : bool
 
 
+@app.get("/")
+def read_root():
+    return {"message": "API funcionando correctamente 🚀"}
+
 @app.get("/horarios_disponibles", response_model=List[dict[str, str]])  # 🔹 Ahora devuelve una lista de diccionarios
 def get_horarios_disponibles():
     horarios_disponibles = list(collection.find({"available": True}, {"date": 1, "time": 1, "_id": 1}))
